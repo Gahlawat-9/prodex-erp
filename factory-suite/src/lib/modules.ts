@@ -1,0 +1,227 @@
+import {
+  BarChart3,
+  Boxes,
+  Briefcase,
+  CalendarDays,
+  CalendarRange,
+  CheckSquare,
+  Download,
+  Factory,
+  FileBarChart,
+  FileCheck2,
+  FileText,
+  FolderOpen,
+  Layers,
+  LogOut,
+  Megaphone,
+  PackageCheck,
+  PieChart,
+  Receipt,
+  Search,
+  Settings,
+  ShoppingCart,
+  Truck,
+  Users,
+  Wallet,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react";
+import type { ModuleId } from "./auth";
+
+export interface ModuleDef {
+  id: ModuleId;
+  label: string;
+  accessKey?: string;
+}
+
+export const MODULES: ModuleDef[] = [
+  { id: "engineering", label: "Engineering & Planning" },
+  { id: "purchase", label: "Purchase & Procurement" },
+  { id: "inventory", label: "Inventory Management"},
+  { id: "quality", label: "Quality Inspection"},
+  { id: "manufacturing", label: "Manufacturing" },
+  { id: "sales", label: "Sales & Marketing" },
+  { id: "gst", label: "GST Module"},
+  { id: "finance", label: "Finance" },
+  { id: "hrm", label: "H.R.M System (Payroll)"},
+  { id: "maintenance", label: "Maintenance"},
+  { id: "sysadmin", label: "System Admin"},
+  { id: "mis", label: "MIS - Top Management"},
+  { id: "presales", label: "Pre-Sales Management"},
+];
+
+export interface ModuleAction {
+  label: string;
+  icon: LucideIcon;
+  action:
+    | "pr"
+    | "po"
+    | "mrr"
+    | "options"
+    | "exit"
+    | "production-plan"
+    | "bom-master"
+    | "work-order"
+    | "stock-master"
+    | "stock-ledger"
+    | "issue"
+    | "finished-goods"
+    | "dispatch";
+}
+
+export function getModuleActions(id: ModuleId): ModuleAction[] {
+  switch (id) {
+    case "purchase":
+      return [
+        { label: "Purchase Requisition", icon: FileText, action: "pr" },
+
+    { label: "General P.O", icon: FileCheck2, action: "po" },
+        { label: "Day Wise Schedule", icon: CalendarDays, action: "options" },
+        { label: "Weekly Schedule", icon: CalendarRange, action: "options" },
+        { label: "Purchase MIS", icon: BarChart3, action: "options" },
+        { label: "Approval System", icon: CheckSquare, action: "options" },
+        { label: "Reports", icon: FileBarChart, action: "options" },
+        { label: "Stock Ledger", icon: Layers, action: "options" },
+        { label: "Stock Summary", icon: PackageCheck, action: "options" },
+        { label: "MRR Report", icon: Search, action: "mrr" },
+        { label: "Master Files", icon: FolderOpen, action: "options" },
+        { label: "Material Receipt", icon: Truck, action: "mrr" },
+        { label: "Approved Vendors", icon: FileCheck2, action: "options" },
+        { label: "PO Checking", icon: CheckSquare, action: "options" },
+        { label: "Import PO", icon: Download, action: "options" },
+        { label: "Pending P.O. Chart", icon: PieChart, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "inventory":
+  return [
+    {
+      label: "Stock Master",
+      icon: Boxes,
+      action: "stock-master",
+    },
+    {
+      label: "Stock Ledger",
+      icon: Layers,
+      action: "stock-ledger",
+    },
+    {
+      label: "Stock Summary",
+      icon: PackageCheck,
+      action: "options",
+    },
+    {
+      label: "MRR Entry",
+      icon: Truck,
+      action: "mrr",
+    },
+    {
+      label: "Issue",
+      icon: FileText,
+      action: "issue",
+    },];
+    case "manufacturing":
+  return [
+    {
+      label: "Production Plan",
+      icon: Factory,
+      action: "production-plan",
+    },
+    {
+      label: "Work Order",
+      icon: FileText,
+      action: "work-order",
+    },
+    {
+      label: "BOM Master",
+      icon: FolderOpen,
+      action: "bom-master",
+    },
+  {
+  label: "Finished Goods",
+  icon: PackageCheck,
+  action: "finished-goods",
+},
+{
+  label: "Dispatch",
+  icon: Truck,
+  action: "dispatch",
+},];
+    case "sales":
+      return [
+        { label: "Sales Order", icon: ShoppingCart, action: "options" },
+        { label: "Invoice", icon: Receipt, action: "options" },
+        { label: "Customer Master", icon: Users, action: "options" },
+        { label: "Sales MIS", icon: BarChart3, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "finance":
+      return [
+        { label: "Vouchers", icon: Receipt, action: "options" },
+        { label: "Ledger", icon: Layers, action: "options" },
+        { label: "Trial Balance", icon: FileBarChart, action: "options" },
+        { label: "P&L", icon: BarChart3, action: "options" },
+        { label: "Balance Sheet", icon: Wallet, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "gst":
+      return [
+        { label: "GSTR-1", icon: FileText, action: "options" },
+        { label: "GSTR-3B", icon: FileText, action: "options" },
+        { label: "GST Reports", icon: FileBarChart, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "hrm":
+      return [
+        { label: "Employee Master", icon: Users, action: "options" },
+        { label: "Attendance", icon: CalendarDays, action: "options" },
+        { label: "Payroll", icon: Wallet, action: "options" },
+        { label: "Leave", icon: FileText, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "quality":
+      return [
+        { label: "QC Inspection", icon: CheckSquare, action: "options" },
+        { label: "Reject Notes", icon: FileText, action: "options" },
+        { label: "Reports", icon: FileBarChart, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "engineering":
+      return [
+        { label: "Drawings", icon: FolderOpen, action: "options" },
+        { label: "Planning", icon: CalendarRange, action: "options" },
+        { label: "Project MIS", icon: BarChart3, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "maintenance":
+      return [
+        { label: "Machine Master", icon: Wrench, action: "options" },
+        { label: "Breakdown Log", icon: FileText, action: "options" },
+        { label: "Preventive", icon: CalendarDays, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "sysadmin":
+      return [
+        { label: "Users", icon: Users, action: "options" },
+        { label: "Rights", icon: Settings, action: "options" },
+        { label: "Branches", icon: Briefcase, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "mis":
+      return [
+        { label: "Dashboard", icon: BarChart3, action: "options" },
+        { label: "Top Mgmt Reports", icon: FileBarChart, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+    case "presales":
+      return [
+        { label: "Leads", icon: Megaphone, action: "options" },
+        { label: "Quotations", icon: FileText, action: "options" },
+        { label: "Follow-ups", icon: CalendarDays, action: "options" },
+        { label: "Exit", icon: LogOut, action: "exit" },
+      ];
+  }
+}
+
+export function getModuleLabel(id: ModuleId): string {
+  return MODULES.find((m) => m.id === id)?.label ?? id;
+}
